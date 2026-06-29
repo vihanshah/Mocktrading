@@ -3,7 +3,9 @@ import { useTradeStore } from "@/store/useTradeStore";
 let socket: WebSocket | null = null;
 
 export function connectWebSocket() {
-  socket = new WebSocket("ws://localhost:8080");
+  const socket = new WebSocket(
+    process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:5000",
+  );
 
   socket.onopen = () => {
     console.log("✅ Connected to WebSocket");
